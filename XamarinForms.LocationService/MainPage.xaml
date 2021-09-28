@@ -24,7 +24,7 @@
             <Label.FormattedText>
                 <FormattedString>
                     <FormattedString.Spans>
-                        <Span Text="Latitude: "/>
+                        <Span Text="Hours: "/>
                         <Span Text="{Binding Latitude}"/>
                     </FormattedString.Spans>
                 </FormattedString>
@@ -34,7 +34,7 @@
             <Label.FormattedText>
                 <FormattedString>
                     <FormattedString.Spans>
-                        <Span Text="Longitude: "/>
+                        <Span Text="Minutes: "/>
                         <Span Text="{Binding Longitude}"/>
                     </FormattedString.Spans>
                 </FormattedString>

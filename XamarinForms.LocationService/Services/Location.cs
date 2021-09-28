@@ -22,16 +22,18 @@ namespace XamarinForms.LocationService.Services
 					token.ThrowIfCancellationRequested();
 					try
 					{
-						await Task.Delay(2000);
+						await Task.Delay(60000);
 
-						var request = new GeolocationRequest(GeolocationAccuracy.High);
-						var location = await Geolocation.GetLocationAsync(request);
-						if (location != null)
+						//var request = new GeolocationRequest(GeolocationAccuracy.Lowest);
+						//var location = await Geolocation.GetLocationAsync(request);
+						//if (location != null)
 						{
-							var message = new LocationMessage 
+							var message = new LocationMessage
 							{
-								Latitude = location.Latitude,
-								Longitude = location.Longitude
+								//Latitude = location.Latitude,
+								//Longitude = location.Longitude
+								Latitude = DateTime.Now.Hour,
+								Longitude = DateTime.Now.Minute
 							};
 
 							Device.BeginInvokeOnMainThread(() =>

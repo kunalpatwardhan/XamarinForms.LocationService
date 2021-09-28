@@ -56,7 +56,7 @@ namespace XamarinForms.LocationService.ViewModels
             StartCommand = new Command(() => OnStartClick());
             EndCommand = new Command(() => OnStopClick());
             HandleReceivedMessages();
-            locationConsent.GetLocationConsent();
+            //locationConsent.GetLocationConsent();
             StartEnabled = true;
             StopEnabled = false;
             ValidateStatus();
@@ -71,7 +71,7 @@ namespace XamarinForms.LocationService.ViewModels
         {
             var message = new StopServiceMessage();
             MessagingCenter.Send(message, "ServiceStopped");
-            UserMessage = "Location Service has been stopped!";
+            UserMessage = "Trial Service has been stopped!";
             SecureStorage.SetAsync(Constants.SERVICE_STATUS_KEY, "0");
             StartEnabled = true;
             StopEnabled = false;
@@ -90,7 +90,7 @@ namespace XamarinForms.LocationService.ViewModels
         {
             var message = new StartServiceMessage();
             MessagingCenter.Send(message, "ServiceStarted");
-            UserMessage = "Location Service has been started!";
+            UserMessage = "Trial Service has been started!";
             SecureStorage.SetAsync(Constants.SERVICE_STATUS_KEY, "1");
             StartEnabled = false;
             StopEnabled = true;
@@ -102,17 +102,17 @@ namespace XamarinForms.LocationService.ViewModels
                 Device.BeginInvokeOnMainThread(() => {
                     Latitude = message.Latitude;
                     Longitude = message.Longitude;
-                    UserMessage = "Location Updated";
+                    UserMessage = "Timestamp Updated";
                 });
             });
             MessagingCenter.Subscribe<StopServiceMessage>(this, "ServiceStopped", message => {
                 Device.BeginInvokeOnMainThread(() => {
-                    UserMessage = "Location Service has been stopped!";
+                    UserMessage = "Trial Service has been stopped!";
                 });
             });
             MessagingCenter.Subscribe<LocationErrorMessage>(this, "LocationError", message => {
                 Device.BeginInvokeOnMainThread(() => {
-                    UserMessage = "There was an error updating location!";
+                    UserMessage = "There was an error updating timestamp!";
                 });
             });
         }

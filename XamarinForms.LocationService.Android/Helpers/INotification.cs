@@ -4,6 +4,7 @@ namespace XamarinForms.LocationService.Droid.Helpers
 {
     public interface INotification
     {
-        Notification ReturnNotif();
+        Notification ReturnNotif(string sTitle = "Trial Service", string sMessage = "Your Message");
+        void UpdateNotification(string contentText = "");
     }
 }
