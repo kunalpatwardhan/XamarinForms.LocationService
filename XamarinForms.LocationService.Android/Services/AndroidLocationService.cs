@@ -35,7 +35,7 @@ namespace XamarinForms.LocationService.Droid.Services
 					//UserMessage = "Location Updated";
 
 					DependencyService.Get<INotification>().UpdateNotification(message.Latitude.ToString() + ":" + message.Longitude.ToString());
-
+					Xamarin.Essentials.TextToSpeech.SpeakAsync("It's" + message.Latitude.ToString() + "," + message.Longitude.ToString());
 				});
 			});
 			
