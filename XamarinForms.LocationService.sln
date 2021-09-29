@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30413.136
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31717.71
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XamarinForms.LocationService", "XamarinForms.LocationService\XamarinForms.LocationService.csproj", "{A22289B2-5F1A-4F3E-A1E4-F84028F829D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamarinForms.LocationService.Android", "XamarinForms.LocationService.Android\XamarinForms.LocationService.Android.csproj", "{32D4F158-763D-431C-8F1B-B4360888B1F9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppi.TrialService.Android", "XamarinForms.LocationService.Android\ppi.TrialService.Android.csproj", "{32D4F158-763D-431C-8F1B-B4360888B1F9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamarinForms.LocationService.iOS", "XamarinForms.LocationService.iOS\XamarinForms.LocationService.iOS.csproj", "{A9063D7F-9847-4FBA-A6FD-6C676EB190B3}"
 EndProject
