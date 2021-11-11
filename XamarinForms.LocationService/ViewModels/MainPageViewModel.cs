@@ -8,20 +8,20 @@ namespace XamarinForms.LocationService.ViewModels
     public class MainPageViewModel : BaseViewModel
     {
         #region vars
-        private double latitude;
-        private double longitude;
+        private int latitude;
+        private int longitude;
         public string userMessage;
         public bool startEnabled;
         public bool stopEnabled;
         #endregion vars
 
         #region properties
-        public double Latitude
+        public int Latitude
         {
             get => latitude;
             set => SetProperty(ref latitude, value);
         }
-        public double Longitude
+        public int Longitude
         {
             get => longitude;
             set => SetProperty(ref longitude, value);
@@ -95,14 +95,20 @@ namespace XamarinForms.LocationService.ViewModels
             StartEnabled = false;
             StopEnabled = true;
         }
-
+        System.DateTime prevDateTime;
         void HandleReceivedMessages()
         {
             MessagingCenter.Subscribe<LocationMessage>(this, "Location", message => {
                 Device.BeginInvokeOnMainThread(() => {
                     Latitude = message.Latitude;
                     Longitude = message.Longitude;
-                    UserMessage = "Timestamp Updated";
+                    System.DateTime dateTime = new System.DateTime(System.DateTime.Now.Year, System.DateTime.Now.Month, System.DateTime.Now.Day, (int)message.Latitude, (int)message.Longitude, 0);
+                    if((prevDateTime-dateTime).TotalMinutes > 1)
+                    {
+                        UserMessage += (prevDateTime - dateTime).TotalMinutes.ToString() + " ";
+                    }
+                    prevDateTime = dateTime;
+                    
                 });
             });
             MessagingCenter.Subscribe<StopServiceMessage>(this, "ServiceStopped", message => {

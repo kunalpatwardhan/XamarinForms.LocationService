@@ -27,17 +27,7 @@ namespace XamarinForms.LocationService.Droid.Services
 			_cts = new CancellationTokenSource();
 
 			Notification notif = DependencyService.Get<INotification>().ReturnNotif();
-
-			MessagingCenter.Subscribe<LocationMessage>(this, "Location", message => {
-				Device.BeginInvokeOnMainThread(() => {
-					//Latitude = message.Latitude;
-					//Longitude = message.Longitude;
-					//UserMessage = "Location Updated";
-
-					DependencyService.Get<INotification>().UpdateNotification(message.Latitude.ToString() + ":" + message.Longitude.ToString());
-					Xamarin.Essentials.TextToSpeech.SpeakAsync("It's" + message.Latitude.ToString() + "," + message.Longitude.ToString());
-				});
-			});
+			
 			
 
 			StartForeground(SERVICE_RUNNING_NOTIFICATION_ID, notif);

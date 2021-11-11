@@ -14,6 +14,7 @@ namespace XamarinForms.LocationService.Droid
     {
         Intent serviceIntent;
         private const int RequestCode = 5469;
+        System.DateTime prevDateTime;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             TabLayoutResource = Resource.Layout.Tabbar;
@@ -35,6 +36,22 @@ namespace XamarinForms.LocationService.Droid
             }
 
             LoadApplication(new App());
+
+            MessagingCenter.Unsubscribe<LocationMessage>(this, "Location");
+            MessagingCenter.Subscribe<LocationMessage>(this, "Location", message => {
+                Device.BeginInvokeOnMainThread(() => {
+                    string UserMessage = "";
+                    DependencyService.Get<Helpers.INotification>().UpdateNotification(message.Latitude.ToString() + ":" + message.Longitude.ToString());
+                    System.DateTime dateTime = new System.DateTime(System.DateTime.Now.Year, System.DateTime.Now.Month, System.DateTime.Now.Day, (int)message.Latitude, (int)message.Longitude, 0);
+                    if ((prevDateTime - dateTime).TotalMinutes > 1)
+                    {
+                        UserMessage = "Delay Difference is " + (prevDateTime - dateTime).TotalMinutes.ToString() + "minutes.";
+                    }
+                    prevDateTime = dateTime;
+
+                    Xamarin.Essentials.TextToSpeech.SpeakAsync(UserMessage);
+                });
+            });
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
